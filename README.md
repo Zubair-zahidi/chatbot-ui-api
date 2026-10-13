@@ -1,28 +1,23 @@
-# 🚀 Chatbot UI with API Key Integration
+# Chatbot UI — API Prototype
 
-![Chatbot Preview](./img1.png)
+A browser chatbot interface built with HTML, CSS, and JavaScript. It explores a custom chat layout, user-configured API access, and local conversation history.
 
-## 📖 Overview
-This project is a **modern HTML/CSS/JS chatbot interface** that allows users to connect their own API keys (e.g., OpenAI) and interact directly with AI models. It’s designed as a sleek, portfolio‑ready demo showcasing both **UI creativity** and **API integration skills**.
+![Chatbot interface preview](img1.png)
 
-![Chatbot api](./img2.png)
+## Run locally
 
-## ✨ Features
-- 🔑 **API Key Modal** – Secure input for user‑provided keys
-- 💬 **Interactive Chat Window** – User and bot messages styled with futuristic bubbles
-- 🎨 **Cosmic Background & Grid Overlay** – Eye‑catching design for a professional portfolio
-- 🌓 **Dark/Light Mode Toggle** (optional enhancement)
-- 🗂 **Local Chat History** – Stored in `localStorage` for persistence
-- 🧹 **Clear Chat Button** – Reset conversations instantly
+```bash
+git clone https://github.com/Zubair-zahidi/chatbot-ui-api.git
+cd chatbot-ui-api
+python -m http.server 8000
+```
 
-## 🛠️ Tech Stack
-- **HTML5** – Structure
-- **CSS3** – Styling (cosmic theme, grid overlay, chat bubbles)
-- **JavaScript (ES6)** – API integration and dynamic chat logic
-- **Font Awesome** – Icons for modal and UI elements
+Open `http://localhost:8000/chatbot.html`. Review the JavaScript in `chatbot.html` for the configured provider and request format before supplying credentials. API usage may incur charges from the provider.
 
-## ⚡ Getting Started
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Zubair-zahidi/chatbot-ui.git
-   cd chatbot-ui
+![Additional interface preview](img2.png)
+
+## Scope and credentials
+
+This is a browser interface prototype for local experimentation. A password-style input field does not secure an API key against browser scripts or the person using the browser. Use a protected backend for production credential handling, and keep real keys out of source control.
+
+Created by **Zubair Zahidi**.
