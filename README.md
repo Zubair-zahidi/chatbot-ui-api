@@ -1,23 +1,29 @@
-# Chatbot UI — API Prototype
+# Chatbot UI — interface prototype
 
-A browser chatbot interface built with HTML, CSS, and JavaScript. It explores a custom chat layout, user-configured API access, and local conversation history.
+A standalone chatbot interface prototype exploring responsive layout, settings dialogs, and safe text rendering. Built with HTML, CSS, and JavaScript by **Zubair Zahidi**.
 
-![Chatbot interface preview](img1.png)
+## Explore the interface
 
-## Run locally
-
-```bash
-git clone https://github.com/Zubair-zahidi/chatbot-ui-api.git
-cd chatbot-ui-api
-python -m http.server 8000
+```sh
+python -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open `http://localhost:8000/chatbot.html`. Review the JavaScript in `chatbot.html` for the configured provider and request format before supplying credentials. API usage may incur charges from the provider.
+Open `chatbot.html` from the local server. The page includes a conversation layout, quick actions, and a provider-settings dialog.
 
-![Additional interface preview](img2.png)
+## Current behavior
 
-## Scope and credentials
+Replies and dashboard metrics are **simulated UI examples**. No AI provider requests are implemented. The settings dialog is a visual prototype; entered keys are not persisted or used. Do not enter real credentials. Chat text is rendered as text rather than inserted as HTML.
 
-This is a browser interface prototype for local experimentation. A password-style input field does not secure an API key against browser scripts or the person using the browser. Use a protected backend for production credential handling, and keep real keys out of source control.
+For a working server-side provider integration, see [Crusher](https://github.com/Zubair-zahidi/ai-chatbot-crusher). For a larger local AI application, see [Zoderise Horizon](https://github.com/Zubair-zahidi/zoderise-horizon).
 
-Created by **Zubair Zahidi**.
+## Development
+
+The interface lives in `chatbot.html`. Serve it locally, check the browser console, and test both narrow and desktop viewports after changes. External fonts and icons may be unavailable on restricted networks. No production API integration or measured model accuracy is claimed.
+
+## Cloud review preview
+
+![Cloud capture of chatbot-ui-api](docs/cloud-review/desktop-2026-10-22.png)
+
+Captured from the running project on 22 October 2026. Replies and metrics are explicitly simulated UI examples; no AI provider is called.
+
+[Mobile capture](docs/cloud-review/mobile-2026-10-22.png)

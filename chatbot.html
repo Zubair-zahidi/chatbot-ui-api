@@ -296,7 +296,7 @@
             <div class="chat-top">
                 <div class="ai-profile">
                     <div class="ai-avatar"><i class="fas fa-robot"></i></div>
-                    <div class="ai-text"><h3>Zoderise AI</h3><p>Multi‑model · real‑time</p></div>
+                    <div class="ai-text"><h3>Zoderise AI</h3><p>Interface prototype · sample replies</p></div>
                 </div>
                 <div class="status-badge"><div class="pulse-dot"></div><span>READY</span></div>
             </div>
@@ -316,11 +316,11 @@
         </section>
 
         <section class="insight-panel">
-            <div class="panel-header"><h4><i class="fas fa-chart-network"></i> METRICS</h4><i class="fas fa-ellipsis-h"></i></div>
+            <div class="panel-header"><h4><i class="fas fa-chart-network"></i> SAMPLE METRICS</h4><i class="fas fa-ellipsis-h"></i></div>
             <div class="viz-container" id="miniViz"></div>
             <div class="stats-grid">
                 <div class="stat-card"><div class="stat-value" id="queriesToday">12.8K</div><div class="stat-label">Queries</div></div>
-                <div class="stat-card"><div class="stat-value" id="accuracy">99.2%</div><div class="stat-label">Accuracy</div></div>
+                <div class="stat-card"><div class="stat-value" id="accuracy">Demo</div><div class="stat-label">Accuracy — unmeasured</div></div>
                 <div class="stat-card"><div class="stat-value">2.1M</div><div class="stat-label">Nodes</div></div>
                 <div class="stat-card"><div class="stat-value" id="latency">42ms</div><div class="stat-label">Response</div></div>
             </div>
@@ -375,25 +375,9 @@
         const cohereInput = document.getElementById('cohereKey');
         const groqInput = document.getElementById('groqKey');
 
-        // ----- Load saved keys from localStorage -----
-        function loadKeys() {
-            openaiInput.value = localStorage.getItem('zod_openai') || '';
-            deepseekInput.value = localStorage.getItem('zod_deepseek') || '';
-            claudeInput.value = localStorage.getItem('zod_claude') || '';
-            cohereInput.value = localStorage.getItem('zod_cohere') || '';
-            groqInput.value = localStorage.getItem('zod_groq') || '';
-        }
-        loadKeys();
-
-        // Save keys
+        // This interface demo does not call providers or persist credentials.
         function saveKeysToStorage() {
-            localStorage.setItem('zod_openai', openaiInput.value);
-            localStorage.setItem('zod_deepseek', deepseekInput.value);
-            localStorage.setItem('zod_claude', claudeInput.value);
-            localStorage.setItem('zod_cohere', cohereInput.value);
-            localStorage.setItem('zod_groq', groqInput.value);
-            statusDiv.textContent = '✓ Keys saved locally (browser storage)';
-            setTimeout(() => statusDiv.textContent = '', 2500);
+            statusDiv.textContent = 'Demo only: no provider requests are sent and keys are not saved.';
         }
 
         saveKeysBtn.addEventListener('click', saveKeysToStorage);
@@ -411,7 +395,13 @@
             const row = document.createElement('div');
             row.className = `message-row ${type}`;
             const icon = type==='user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
-            row.innerHTML = `<div class="msg-avatar">${icon}</div><div class="bubble">${text}</div>`;
+            const avatar = document.createElement('div');
+            avatar.className = 'msg-avatar';
+            avatar.innerHTML = icon;
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.textContent = text;
+            row.append(avatar, bubble);
             msgContainer.appendChild(row);
             msgContainer.scrollTop = msgContainer.scrollHeight;
         }
@@ -422,8 +412,8 @@
             if (q.includes('research')) return "Recent AI: multimodal models, efficient fine-tuning, agentic reasoning. Focus on reliability.";
             if (q.includes('startup')) return "AI personal knowledge base that organizes your notes, bookmarks, and chats intelligently.";
             if (q.includes('poem')) return "In circuits deep and data streams,\nWe shape the future's brightest dreams.";
-            const defaults = ["I'm analyzing that. Feel free to add more context.", "Zoderise: processing with high accuracy.", "Interesting question. Let me break it down."];
-            return defaults[Math.floor(Math.random()*defaults.length)] + " (Multi‑model ready)";
+            const defaults = ["I'm analyzing that. Feel free to add more context.", "Zoderise: showing a sample response.", "Interesting question. Let me break it down."];
+            return defaults[Math.floor(Math.random()*defaults.length)] + " (Demo response)";
         }
 
         function handleSend() {
@@ -448,8 +438,8 @@
         });
 
         window.addEventListener('load', () => {
-            addMessage('bot', '👋 Hello! I’m Zoderise. You can configure API keys (OpenAI, DeepSeek, Claude, Cohere, Groq) via the ⚙️ button.');
-            setTimeout(() => addMessage('bot', 'Keys are stored locally. Ask me anything or use quick actions.'), 700);
+            addMessage('bot', '👋 Hello! I’m Zoderise. Provider settings are a visual prototype.');
+            setTimeout(() => addMessage('bot', 'This demo uses sample replies. Do not enter real API keys.'), 700);
         });
 
         // viz stars
@@ -469,7 +459,7 @@
         }, 3500);
 
         const accEl = document.getElementById('accuracy');
-        if(accEl) { let v=98.5; const iv=setInterval(()=>{ v=Math.min(99.8, v+0.03); accEl.textContent=v.toFixed(1)+'%'; if(v>=99.7)clearInterval(iv); },40); }
+        if(accEl) accEl.textContent = 'Demo';
 
         console.log('Zoderise · API key manager · Zubair Zahidi');
     })();
